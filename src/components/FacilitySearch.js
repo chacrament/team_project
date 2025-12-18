@@ -69,6 +69,7 @@ const FacilitySearch = () => {
       {loading && <div className="text-center my-5">카카오 검색중... ⏳</div>}
 
       <div className="row">
+        {console.log("places =", places)}
         {places.map((place) => (
           <div className="col-md-6 mb-4" key={place.id}>
             <div className="custom-card h-100 d-flex flex-column">
