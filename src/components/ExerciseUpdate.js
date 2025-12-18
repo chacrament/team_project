@@ -37,7 +37,7 @@ const ExerciseUpdate = () => {
   const user = JSON.parse(localStorage.getItem('user'));
 
   const [form, setForm] = useState({
-    date: '', body_part: '', exercise_type: '', sets: 0, calories: 0, duration: 0, username: ''
+    date: '', body_part: '', exercise_type: '', sets: 0, calories: 0, duration: 0, memo: '', username: ''
   });
 
   useEffect(() => {
@@ -154,6 +154,21 @@ const ExerciseUpdate = () => {
             readOnly={isAutoCalc}
           />
         </div>
+
+        <div className="mb-4">
+          <label className="fw-bold text-muted ps-2 mb-2">
+            Memo (Facility / Note)
+          </label>
+          <textarea
+            name="memo"
+            className="form-control-custom"
+            rows="3"
+            placeholder="시설명, 위치, 특이사항 등을 입력하세요"
+            value={form.memo}
+            onChange={handleChange}
+          />
+        </div>
+
 
         <button onClick={handleUpdate} className="btn-custom w-100">
           Update Workout
