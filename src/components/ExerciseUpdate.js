@@ -142,21 +142,6 @@ const ExerciseUpdate = () => {
 
         <div className="mb-4">
           <label className="fw-bold text-muted ps-2 mb-2">
-            Calories {isAutoCalc ? "(Auto)" : "(Manual)"}
-          </label>
-          <input 
-            type="number" 
-            name="calories" 
-            className="form-control-custom fw-bold text-primary" 
-            style={{ backgroundColor: isAutoCalc ? '#e3f2fd' : '#fff' }} 
-            value={form.calories} 
-            onChange={handleChange}
-            readOnly={isAutoCalc}
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="fw-bold text-muted ps-2 mb-2">
             Memo (Facility / Note)
           </label>
           <textarea
@@ -169,6 +154,20 @@ const ExerciseUpdate = () => {
           />
         </div>
 
+        <div className="mb-4">
+          <label className="fw-bold text-muted ps-2 mb-2">
+            Calories {isAutoCalc ? "(Auto)" : "(Manual)"}
+          </label>
+          <input 
+            type="number" 
+            name="calories" 
+            className="form-control-custom fw-bold text-primary" 
+            style={{ backgroundColor: isAutoCalc ? '#e3f2fd' : '#fff' }} 
+            value={form.calories} 
+            onChange={handleChange}
+            readOnly={isAutoCalc}
+          />
+        </div>
 
         <button onClick={handleUpdate} className="btn-custom w-100">
           Update Workout
