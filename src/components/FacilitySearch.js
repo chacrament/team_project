@@ -16,17 +16,11 @@ const FacilitySearch = () => {
 
     setLoading(true);
     try {
-      const res = await axios.get('/kakao-api/v2/local/search/keyword.json', {
-        headers: {
-          Authorization: `KakaoAK ${KAKAO_API_KEY}` 
-        },
-        params: {
-          query: query,
-          size: 15
-        }
+      const res = await axios.get("/api/kakao-search", {
+        params: { query, size: 15 },
       });
-      
-      setPlaces(res.data.documents);
+      const docs = res?.data?.documents;
+      setPlaces(Array.isArray(docs) ? docs : []);
 
     } catch (err) {
       console.error("카카오 검색 에러:", err);
@@ -70,7 +64,7 @@ const FacilitySearch = () => {
 
       <div className="row">
         {console.log("places =", places)}
-        {places.map((place) => (
+        {(places ?? []).map((place) => (
           <div className="col-md-6 mb-4" key={place.id}>
             <div className="custom-card h-100 d-flex flex-column">
               <div className="d-flex justify-content-between align-items-start mb-2">
