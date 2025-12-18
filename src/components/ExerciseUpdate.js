@@ -49,7 +49,7 @@ const ExerciseUpdate = () => {
       }
       setForm(res.data);
     });
-  }, [id, user, navigate]);
+  }, [id]);
 
   const calculateCalories = (type, sets, duration) => {
     if (type && CALORIES_DB[type]) {
