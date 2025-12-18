@@ -4,7 +4,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 const API_URL = 'https://692ae5787615a15ff24e076c.mockapi.io/exercises';
 
-// 운동 목록
 const exerciseOptions = {
   "가슴": ["벤치프레스", "푸쉬업", "딥스", "인클라인 벤치프레스"],
   "등": ["데드리프트", "풀업", "랫 풀 다운", "바벨 로우"],
@@ -17,46 +16,38 @@ const exerciseOptions = {
 };
 
 const CALORIES_DB = {
-  // 가슴
   "벤치프레스": { perSet: 15, perMin: 1.5 },
   "푸쉬업": { perSet: 5, perMin: 2 },
   "딥스": { perSet: 8, perMin: 2 },
   "인클라인 벤치프레스": { perSet: 15, perMin: 1.5 },
   
-  // 등
   "데드리프트": { perSet: 20, perMin: 2 },
   "풀업": { perSet: 10, perMin: 2 },
   "랫 풀 다운": { perSet: 12, perMin: 1.5 },
   "바벨 로우": { perSet: 18, perMin: 2 },
 
-  // 하체
   "스쿼트": { perSet: 18, perMin: 3 },
   "런지": { perSet: 10, perMin: 4 },
   "레그 프레스": { perSet: 20, perMin: 2 },
   "레그 익스텐션": { perSet: 10, perMin: 1.5 },
 
-  // 어깨
   "오버헤드 프레스": { perSet: 15, perMin: 1.5 },
   "사이드 레터럴 레이즈": { perSet: 8, perMin: 1 },
   "프론트 레이즈": { perSet: 8, perMin: 1 },
 
-  // 팔
   "바벨 컬": { perSet: 10, perMin: 1 },
   "덤벨 컬": { perSet: 8, perMin: 1 },
   "트라이셉스 익스텐션": { perSet: 8, perMin: 1 },
 
-  // 복근
   "플랭크": { perSet: 3, perMin: 5 }, 
   "크런치": { perSet: 4, perMin: 3 },
   "레그 레이즈": { perSet: 5, perMin: 3 },
 
-  // 유산소 (세트 개념보다는 시간 비중이 큼)
   "러닝머신": { perSet: 0, perMin: 10 },
   "사이클": { perSet: 0, perMin: 8 },
   "버피": { perSet: 5, perMin: 10 },
   "천국의 계단": { perSet: 0, perMin: 15 },
   
-  // 기타
   "직접입력": { perSet: 0, perMin: 0 } 
 };
 
@@ -65,7 +56,6 @@ const ExerciseCreate = () => {
   const location = useLocation(); 
   const user = JSON.parse(localStorage.getItem('user'));
 
-  // 초기값 설정
   const [form, setForm] = useState(() => {
     const initialState = {
       date: new Date().toISOString().split('T')[0],
@@ -93,7 +83,6 @@ const ExerciseCreate = () => {
     if (!user) { alert("로그인이 필요합니다."); navigate('/login'); }
   }, [user, navigate]);
 
-  // 칼로리 계산 함수
   const calculateCalories = (type, sets, duration) => {
     if (type && CALORIES_DB[type]) {
       const metric = CALORIES_DB[type];
@@ -102,7 +91,6 @@ const ExerciseCreate = () => {
     return 0;
   };
 
-  // 입력 핸들러
   const handleChange = (e) => {
     const { name, value } = e.target;
     
